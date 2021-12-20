@@ -125,6 +125,7 @@ def get_data(symbols: str, start: str = '2000-01-01',
     df = df_all.dropna(axis=1,how='any')
     df = df.loc[:, ~ df.columns.duplicated()]
     # Select data with date range
+    df['date_trade'] = pd.to_datetime(df['date_trade'], format='%Y-%m-%d')
     df = df[df['date_trade'] >= start]
     df = df[df['date_trade'] <= end]
     # Set index
